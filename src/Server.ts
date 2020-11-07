@@ -15,6 +15,7 @@ import * as session from "express-session";
 import {IndexCtrl} from "./controllers/IndexCtrl";
 import {SweetsCtrl} from "./controllers/SweetsCtrl";
 import {UsersCtrl} from "./controllers/UsersCtrl";
+import {PassportCtrl} from "./controllers/PassportCtrl";
 
 export const rootDir = __dirname;
 
@@ -25,7 +26,11 @@ export const rootDir = __dirname;
   httpsPort: false, // CHANGE
   mongoose: mongooseConfig,
   mount: {
-    "/api": [SweetsCtrl, UsersCtrl],
+    "/api": [
+      SweetsCtrl, 
+      UsersCtrl,
+      PassportCtrl
+    ],
     "/": [IndexCtrl]
   },
   componentsScan: [],
