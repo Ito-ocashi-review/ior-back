@@ -6,7 +6,7 @@ import {UsersService} from "../services/UsersService";
 
 
 @Protocol<IStrategyOptions>({
-  name: "login",
+  name: "local",
   useStrategy: Strategy,
   settings: {
     usernameField: "email",
