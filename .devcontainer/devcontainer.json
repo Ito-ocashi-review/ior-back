@@ -1,9 +1,9 @@
 
 {
-	"name": "Ito-ocashi-review",
+	"name": "ior-back",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "node",
-	"workspaceFolder": "/Ito-ocashi-review",
+	"workspaceFolder": "/ior-back",
 
 	"settings": {
 		"terminal.integrated.shell.linux": "/bin/bash"

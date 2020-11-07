@@ -14,11 +14,9 @@ services:
         context: .
         dockerfile: Dockerfile
       ports:
-        - 3000:3000
+        - 8000:8000
 
       volumes:
-        - ..:/Ito-ocashi-review:cached
-        - /Ito-ocashi-review/front/node_modules
-        - /Ito-ocashi-review/front/.next
-        - /Ito-ocashi-review/back/node_modules
+        - ..:/ior-back:cached
+        - /ior-back/node_modules
       tty: true
