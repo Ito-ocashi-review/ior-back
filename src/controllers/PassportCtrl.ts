@@ -21,4 +21,9 @@ export class PassportCtrl {
     return req.user;
   }
 
+  @Get("/logout")
+  logout(@Req() req: Req) {
+    req.logout();
+  }
+
 }
