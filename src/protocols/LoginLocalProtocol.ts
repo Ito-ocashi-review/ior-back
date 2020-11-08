@@ -22,20 +22,17 @@ export class LoginLocalProtocol implements OnVerify, OnInstall {
 
     const user = await this.usersService.findByEmail(email);
 
-    if (!user) {
-      return false;
-      // OR throw new NotAuthorized("Wrong credentials")
+    if (user == null) {
+      return false
     }
 
-    if (!user.verifyPassword(password)) {
+    // TODO hash user password
+    if (!user.isPasswordVerify(password)) {
       return false;
-      // OR throw new NotAuthorized("Wrong credentials")
     }
 
     return user;
   }
 
-  $onInstall(strategy: Strategy): void {
-    // intercept the strategy instance to adding extra configuration
-  }
+  $onInstall(strategy: Strategy): void {}
 }

@@ -19,7 +19,7 @@ export class User {
   @Required()
   name: string;
 
-  verifyPassword(password: string) {
+  isPasswordVerify(password: string) {
     return this.password === password;
   }
 }

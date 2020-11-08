@@ -35,7 +35,9 @@ export const rootDir = __dirname;
     ],
     "/": [IndexCtrl]
   },
-  componentsScan: [],
+  componentsScan: [
+    `${rootDir}/protocols/*{.ts,.js}` // scan protocols directory
+  ],
   swagger: [
     {
       path: "/v1/docs",
