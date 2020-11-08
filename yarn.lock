@@ -344,21 +344,29 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.6.tgz#146d3da57b3c636cc0d1769396ce1cfa8991147f"
   integrity sha512-6QlRuqsQ/Ox/aJEQWBEJG7A9+u7oSYl3mem/K8IzxXG/kAGbV1YPD9Bg9Zw3vyxC/YP+zONKwy8hGkSt1jxFMw==
 
-"@types/passport-local@^1.0.33":
-  version "1.0.33"
-  resolved "https://registry.yarnpkg.com/@types/passport-local/-/passport-local-1.0.33.tgz#d245b60c5b801cb3aeca1ffab557d5fe1534260d"
-  integrity sha512-+rn6ZIxje0jZ2+DAiWFI8vGG7ZFKB0hXx2cUdMmudSWsigSq6ES7Emso46r4HJk0qCgrZVfI8sJiM7HIYf4SbA==
+"@types/oauth@*":
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/@types/oauth/-/oauth-0.9.1.tgz#e17221e7f7936b0459ae7d006255dff61adca305"
+  integrity sha512-a1iY62/a3yhZ7qH7cNUsxoI3U/0Fe9+RnuFrpTKr+0WVOzbKlSLojShCKe20aOD1Sppv+i8Zlq0pLDuTJnwS4A==
+  dependencies:
+    "@types/node" "*"
+
+"@types/passport-github2@^1.2.4":
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/@types/passport-github2/-/passport-github2-1.2.4.tgz#f56c386d1fe6435e359430e57adc1747a627bd86"
+  integrity sha512-dtGtA0Uyzk6ne3SrgQi/I1ClClLE3i7JmSiMaJgkGH8v1nbE9JdBpG7QWJ1XPlLdcf7EvoPdHmkWN2+Kln9y8g==
   dependencies:
     "@types/express" "*"
     "@types/passport" "*"
-    "@types/passport-strategy" "*"
+    "@types/passport-oauth2" "*"
 
-"@types/passport-strategy@*":
-  version "0.2.35"
-  resolved "https://registry.yarnpkg.com/@types/passport-strategy/-/passport-strategy-0.2.35.tgz#e52f5212279ea73f02d9b06af67efe9cefce2d0c"
-  integrity sha512-o5D19Jy2XPFoX2rKApykY15et3Apgax00RRLf0RUotPDUsYrQa7x4howLYr9El2mlUApHmCMv5CZ1IXqKFQ2+g==
+"@types/passport-oauth2@*":
+  version "1.4.9"
+  resolved "https://registry.yarnpkg.com/@types/passport-oauth2/-/passport-oauth2-1.4.9.tgz#134007c4b505a82548c9cb19094c5baeb2205c92"
+  integrity sha512-QP0q+NVQOaIu2r0e10QWkiUA0Ya5mOBHRJN0UrI+LolMLOP1/VN4EVIpJ3xVwFo+xqNFRoFvFwJhBvKnk7kpUA==
   dependencies:
     "@types/express" "*"
+    "@types/oauth" "*"
     "@types/passport" "*"
 
 "@types/passport@*":
@@ -2342,13 +2350,6 @@ passport-github2@^0.1.12:
   integrity sha512-3nPUCc7ttF/3HSP/k9sAXjz3SkGv5Nki84I05kSQPo01Jqq1NzJACgMblCK0fGcv9pKCG/KXU3AJRDGLqHLoIw==
   dependencies:
     passport-oauth2 "1.x.x"
-
-passport-local@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/passport-local/-/passport-local-1.0.0.tgz#1fe63268c92e75606626437e3b906662c15ba6ee"
-  integrity sha1-H+YyaMkudWBmJkN+O5BmYsFbpu4=
-  dependencies:
-    passport-strategy "1.x.x"
 
 passport-oauth2@1.x.x:
   version "1.5.0"
