@@ -1,25 +1,19 @@
-import {Description, Ignore, Required,Example,Format} from "@tsed/schema";
+import {Description, Required} from "@tsed/schema";
 import {Model} from "@tsed/mongoose";
 
 @Model()
-export class User {
-  @Description("Database assigned id")
-  _id: string;
+export class User{
 
-  @Ignore()
-  password: string;
-
-  @Description("User email")
-  @Example("user@domain.com")
-  @Format("email")
+  @Description("Username (identifer)")
   @Required()
-  email: string;
+  username: string;
 
-  @Description("User name")
+  @Description("DisplayName")
   @Required()
-  name: string;
+  displayName: string;
 
-  isPasswordVerify(password: string) {
-    return this.password === password;
-  }
+  @Description("FilePath")
+  @Required()
+  filePath: string;
+
 }

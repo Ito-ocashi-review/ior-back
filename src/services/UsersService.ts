@@ -2,6 +2,7 @@ import {Inject, Service} from "@tsed/common";
 import {$log} from "@tsed/logger";
 import {MongooseModel} from "@tsed/mongoose";
 import {User} from "../models/User";
+import {CreateQuery} from "mongoose";
 
 @Service()
 export class UsersService {
@@ -22,17 +23,26 @@ export class UsersService {
     }
 
   /**
-   * Find a user by his email.
+   * Find a user or create user for new register
    * @param email
    * @returns {undefined|User}
    */
-  async findByEmail(email: string): Promise<User | null> {
-    $log.debug("Search a user from email", email);
-    const user = await this.User.findOne({email}).exec();
+  async findOrCreate(profile:{username:string,displayName:string,photos:[{value:string}]}): Promise<User> {
+    $log.debug("Search a user from username", profile.username);
+    const user = await this.User.findOne({username:profile.username}).exec();
 
-    $log.debug("Found", user);
+    // Return if existing user
+    if(user != null){
+      $log.debug("Found", user);
+      return user
+    }
 
-    return user;
+    // create new user
+    return this.save({
+      username:profile.username,
+      displayName:profile.displayName,
+      filePath:profile.photos[0].value,
+    })    
   }
 
   async save(user: User): Promise<User> {
