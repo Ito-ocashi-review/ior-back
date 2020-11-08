@@ -8,9 +8,9 @@ import {UsersService} from "../services/UsersService";
   name: "github",
   useStrategy: Strategy,
   settings: {
-    clientID: "",
-    clientSecret: "",
-    callbackURL: "http://localhost:8000/api/auth/github/callback",
+    clientID: process.env.GITHUB_CLIENT_ID || '',
+    clientSecret: process.env.GITHUB_CLIENT_SECRET || '',
+    callbackURL: `${process.env.SITE_URL}/api/auth/github/callback`,
   }
 })
 export class GitHubProtocol implements OnVerify, OnInstall {
