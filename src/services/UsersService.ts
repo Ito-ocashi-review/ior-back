@@ -2,7 +2,6 @@ import {Inject, Service} from "@tsed/common";
 import {$log} from "@tsed/logger";
 import {MongooseModel} from "@tsed/mongoose";
 import {User} from "../models/User";
-import {CreateQuery} from "mongoose";
 
 @Service()
 export class UsersService {
