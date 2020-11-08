@@ -15,6 +15,9 @@ import * as session from "express-session";
 import {IndexCtrl} from "./controllers/IndexCtrl";
 import {SweetsCtrl} from "./controllers/SweetsCtrl";
 import {UsersCtrl} from "./controllers/UsersCtrl";
+import {PassportCtrl} from "./controllers/PassportCtrl";
+
+import {User} from "./models/User";
 
 export const rootDir = __dirname;
 
@@ -25,10 +28,16 @@ export const rootDir = __dirname;
   httpsPort: false, // CHANGE
   mongoose: mongooseConfig,
   mount: {
-    "/api": [SweetsCtrl, UsersCtrl],
+    "/api": [
+      SweetsCtrl, 
+      UsersCtrl,
+      PassportCtrl
+    ],
     "/": [IndexCtrl]
   },
-  componentsScan: [],
+  componentsScan: [
+    `${rootDir}/protocols/*{.ts,.js}` // scan protocols directory
+  ],
   swagger: [
     {
       path: "/v1/docs",
@@ -39,7 +48,10 @@ export const rootDir = __dirname;
     root: `${rootDir}/../views`,
     viewEngine: "ejs"
   },
-  exclude: ["**/*.spec.ts"]
+  exclude: ["**/*.spec.ts"],
+  passport: {
+    userInfoModel: User
+  }
 })
 export class Server {
   @Inject()
