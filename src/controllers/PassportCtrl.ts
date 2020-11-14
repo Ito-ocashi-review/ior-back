@@ -25,8 +25,7 @@ export class PassportCtrl {
 
   @Get("/:protocol/callback")
   @Authorize(":protocol")
-  @Redirect('http://localhost:3000')
-  @Returns(200, User)
+  @Redirect(302,'http://localhost:3000')
   connectProtocolCallback(@Req() req: Req,res: Res): any {
     return Redirect(302,'http://localhost:3000');
   }
