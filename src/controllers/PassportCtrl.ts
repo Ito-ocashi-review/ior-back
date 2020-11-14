@@ -1,4 +1,4 @@
-import {Controller, Get, Req} from "@tsed/common";
+import {Controller, Get, Req, Res,Redirect} from "@tsed/common";
 import {Authorize} from "@tsed/passport";
 import {Returns} from "@tsed/schema";
 import {User} from "../models/User";
@@ -25,10 +25,10 @@ export class PassportCtrl {
 
   @Get("/:protocol/callback")
   @Authorize(":protocol")
+  @Redirect('http://localhost:3000')
   @Returns(200, User)
-  connectProtocolCallback(@Req() req: Req): any {
-    // FACADE
-    return req.user;
+  connectProtocolCallback(@Req() req: Req,res: Res): any {
+    return Redirect(302,'http://localhost:3000');
   }
 
 }
