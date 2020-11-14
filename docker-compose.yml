@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo
+    restart: always
+    container_name: ior_db
+    ports:
+      - 27017:27017
+    networks:
+      - ito_ocashi_link
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ior_back
+    command: sh -c "yarn dev"
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/ior-back
+      - /ior-back/node_modules
+    depends_on:
+      - mongo
+    networks:
+      - ito_ocashi_link
+
+networks:
+  ito_ocashi_link:
+    external: true
