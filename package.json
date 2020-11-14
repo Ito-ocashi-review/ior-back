@@ -34,13 +34,13 @@
     "cookie-parser": "1.4.5",
     "cors": "2.8.5",
     "cross-env": "7.0.2",
+    "dotenv": "^8.2.0",
     "express": "4.17.1",
     "express-session": "^1.17.1",
     "method-override": "3.0.0",
     "mongoose": "5.10.11",
     "passport": "^0.4.1",
     "passport-github2": "^0.1.12",
-    "passport-local": "^1.0.0",
     "serve-static": "^1.13.1"
   },
   "devDependencies": {
@@ -57,7 +57,7 @@
     "@types/method-override": "0.0.31",
     "@types/mongoose": "5.7.37",
     "@types/node": "14.14.6",
-    "@types/passport-local": "^1.0.33",
+    "@types/passport-github2": "^1.2.4",
     "@types/request-promise": "^4.1.42",
     "@types/supertest": "2.0.10",
     "@typescript-eslint/eslint-plugin": "4.6.1",

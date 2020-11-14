@@ -1,9 +1,7 @@
 [
     {
-        "_id": "5ce4f06355e613656623a2ab",
-        "name": "itizawa",
-        "email": "itizawa@example.com",
-        "password": "hogehoge",
-        "dateStart": "2017-07-01T00:00:00.000Z"
+        "username": "admin",
+        "displayName": "管理者",
+        "filePath": "https://avatars1.githubusercontent.com/u/48426654?s=400&u=5bc8892b0f575e8e70c7903ff443faa3574178eb&v=4"
       }
 ]
