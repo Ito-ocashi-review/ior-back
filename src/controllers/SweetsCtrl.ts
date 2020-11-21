@@ -1,4 +1,4 @@
-import {BodyParams, Controller, Delete, Get, PathParams, Post} from "@tsed/common";
+import {BodyParams, Controller, Delete, Get, Put, PathParams, Post} from "@tsed/common";
 import {NotFound} from "@tsed/exceptions";
 import {Description, Required, Returns, Status, Summary} from "@tsed/schema";
 import {SweetId} from "../decorators/SweetId";
@@ -34,6 +34,22 @@ export class SweetsCtrl {
     sweet: Sweet
   ) {
     return this.sweetsService.save(sweet);
+  }
+
+  @Put("/:id")
+  @Summary("Update sweet information")
+  @(Status(200).Description("Success"))
+  async update(
+    @PathParams("id")
+    id: string,
+    @BodyParams() sweet: Sweet
+  ): Promise<Sweet> {
+    return this.sweetsService
+      .find(id)
+      .then(() => this.sweetsService.save(sweet))
+      .catch((err) => {
+        throw new NotFound("Sweet id not found");
+      });
   }
 
   @Delete("/:id")
