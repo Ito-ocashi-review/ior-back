@@ -52,4 +52,15 @@ export class SweetsService {
     return model;
   }
 
+  /**
+   *
+   * @param id
+   * @returns {Promise<Sweet>}
+   */
+  async remove(id: string) {
+    await this.Sweet.deleteOne({
+      _id: id
+    }).exec();
+  }
+
 }
