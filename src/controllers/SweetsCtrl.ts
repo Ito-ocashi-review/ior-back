@@ -1,4 +1,4 @@
-import {BodyParams, Controller, Get, PathParams, Post} from "@tsed/common";
+import {BodyParams, Controller, Delete, Get, PathParams, Post} from "@tsed/common";
 import {NotFound} from "@tsed/exceptions";
 import {Description, Required, Returns, Status, Summary} from "@tsed/schema";
 import {SweetId} from "../decorators/SweetId";
@@ -36,4 +36,15 @@ export class SweetsCtrl {
     return this.sweetsService.save(sweet);
   }
 
+  @Delete("/:id")
+  @Summary("Remove an sweet")
+  @(Status(204).Description("No content"))
+  async remove(
+    @Required()
+    @Description("The sweet id")
+    @PathParams("id")
+    id: string
+  ): Promise<void> {
+    return this.sweetsService.remove(id);
+  }
 }
