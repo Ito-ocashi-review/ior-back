@@ -29,7 +29,6 @@ export class Review{
 
     @Description("Comment")
     @Required()
-    
     comment: string;
 
   
