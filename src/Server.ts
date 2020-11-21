@@ -11,6 +11,7 @@ import * as cookieParser from "cookie-parser";
 import * as methodOverride from "method-override";
 import mongooseConfig from "./config/index";
 import * as session from "express-session";
+import * as cors from "cors";
 
 import {IndexCtrl} from "./controllers/IndexCtrl";
 import {SweetsCtrl} from "./controllers/SweetsCtrl";
@@ -64,6 +65,7 @@ export class Server {
 
   $beforeRoutesInit(): void {
     this.app
+      .use(cors())
       .use(cookieParser())
       .use(compress({}))
       .use(methodOverride())
