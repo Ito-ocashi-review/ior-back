@@ -15,6 +15,7 @@ import * as session from "express-session";
 import {IndexCtrl} from "./controllers/IndexCtrl";
 import {SweetsCtrl} from "./controllers/SweetsCtrl";
 import {UsersCtrl} from "./controllers/UsersCtrl";
+import {ReviewsCtrl} from "./controllers/ReviewsCtrl";
 import {PassportCtrl} from "./controllers/PassportCtrl";
 
 import {User} from "./models/User";
@@ -31,6 +32,7 @@ export const rootDir = __dirname;
     "/api": [
       SweetsCtrl, 
       UsersCtrl,
+      ReviewsCtrl,
       PassportCtrl
     ],
     "/": [IndexCtrl]
