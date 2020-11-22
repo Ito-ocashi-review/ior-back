@@ -24,6 +24,13 @@ export class SweetsCtrl {
     throw new NotFound("Sweet not found");
   }
 
+  @Get("/")
+  @Summary("Return all sweets")
+  @(Status(200, Sweet).Description("Success"))
+  async findAll(): Promise<Array<Sweet> | null> {
+    return await this.sweetsService.findAll();
+  }
+
   @Post("/")
   @Summary("Create a new Sweet")
   @(Returns(201, Sweet).Description("Created"))
