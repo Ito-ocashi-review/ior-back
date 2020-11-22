@@ -12,7 +12,7 @@ export class SweetAttachmentsCtrl {
   constructor(private SweetAttachmentsService: SweetAttachmentsService) {}
 
   @Get("/:id")
-  @Summary("Return a SweetAttachment by ID")
+  @Summary("Return a attachment by ID")
   @(Status(200, SweetAttachment).Description("Success"))
   async get(@PathParams("id") @SweetAttachmentId() id: string): Promise<SweetAttachment> {
     const attachment = await this.SweetAttachmentsService.find(id);
@@ -25,7 +25,7 @@ export class SweetAttachmentsCtrl {
   }
 
   @Post("/")
-  @Summary("Create a new Review")
+  @Summary("Create a new attachment")
   @(Returns(201, SweetAttachment).Description("Created"))
   save(
     @Description("SweetAttachment model")
