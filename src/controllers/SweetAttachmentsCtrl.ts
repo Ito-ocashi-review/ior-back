@@ -1,8 +1,8 @@
 import {BodyParams, Controller, Get, PathParams, Post} from "@tsed/common";
 import {NotFound} from "@tsed/exceptions";
 import {Description, Required, Returns, Status, Summary} from "@tsed/schema";
-import {ReviewId} from "../decorators/ReviewId";
 import {SweetAttachment} from "../models/SweetAttachment";
+import {SweetAttachmentId} from "../decorators/SweetAttachmentId"
 import {SweetAttachmentsService} from '../services/SweetAttachmentsService';
 
 @Controller({
@@ -14,7 +14,7 @@ export class SweetAttachmentsCtrl {
   @Get("/:id")
   @Summary("Return a review by ID")
   @(Status(200, SweetAttachment).Description("Success"))
-  async get(@PathParams("id") @ReviewId() id: string): Promise<SweetAttachment> {
+  async get(@PathParams("id") @SweetAttachmentId() id: string): Promise<SweetAttachment> {
     const attachment = await this.SweetAttachmentsService.find(id);
 
     if (attachment) {
