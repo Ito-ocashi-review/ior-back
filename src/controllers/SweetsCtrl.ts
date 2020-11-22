@@ -9,13 +9,13 @@ import {SweetsService} from "../services/SweetsService";
   path: "/sweets",
 })
 export class SweetsCtrl {
-  constructor(private sweetsService: SweetsService) {}
+  constructor(private SweetsService: SweetsService) {}
 
   @Get("/:id")
   @Summary("Return a sweet by ID")
   @(Status(200, Sweet).Description("Success"))
   async get(@PathParams("id") @SweetId() id: string): Promise<Sweet> {
-    const sweet = await this.sweetsService.find(id);
+    const sweet = await this.SweetsService.find(id);
 
     if (sweet) {
       return sweet;
@@ -28,7 +28,7 @@ export class SweetsCtrl {
   @Summary("Return all sweets")
   @(Status(200, Sweet).Description("Success"))
   async findAll(): Promise<Array<Sweet> | null> {
-    return await this.sweetsService.findAll();
+    return await this.SweetsService.findAll();
   }
 
   @Post("/")
@@ -40,7 +40,7 @@ export class SweetsCtrl {
     @Required()
     sweet: Sweet
   ) {
-    return this.sweetsService.save(sweet);
+    return this.SweetsService.save(sweet);
   }
 
   @Put("/:id")
@@ -51,9 +51,9 @@ export class SweetsCtrl {
     id: string,
     @BodyParams() sweet: Sweet
   ): Promise<Sweet> {
-    return this.sweetsService
+    return this.SweetsService
       .find(id)
-      .then(() => this.sweetsService.save(sweet))
+      .then(() => this.SweetsService.save(sweet))
       .catch((err) => {
         throw new NotFound("Sweet id not found");
       });
@@ -68,6 +68,6 @@ export class SweetsCtrl {
     @PathParams("id")
     id: string
   ): Promise<void> {
-    return this.sweetsService.remove(id);
+    return this.SweetsService.remove(id);
   }
 }
