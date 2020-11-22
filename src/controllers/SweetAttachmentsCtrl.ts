@@ -3,7 +3,7 @@ import {NotFound} from "@tsed/exceptions";
 import {Description, Required, Returns, Status, Summary} from "@tsed/schema";
 import {ReviewId} from "../decorators/ReviewId";
 import {SweetAttachment} from "../models/SweetAttachment";
-import { SweetAttachmentsService } from '../services/SweetAttachmentsService';
+import {SweetAttachmentsService} from '../services/SweetAttachmentsService';
 
 @Controller({
   path: "/attachments",
