@@ -35,6 +35,10 @@ export class SweetsService {
     return sweet;
   }
 
+  /**
+   * Find all sweets
+   * @returns {undefined|Arry<Sweet>}
+   */
   async findAll(): Promise<Array<Sweet> | null> {
     return await this.Sweet.find({})
   }
