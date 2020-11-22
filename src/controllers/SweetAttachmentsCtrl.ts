@@ -12,7 +12,7 @@ export class SweetAttachmentsCtrl {
   constructor(private SweetAttachmentsService: SweetAttachmentsService) {}
 
   @Get("/:id")
-  @Summary("Return a review by ID")
+  @Summary("Return a SweetAttachment by ID")
   @(Status(200, SweetAttachment).Description("Success"))
   async get(@PathParams("id") @SweetAttachmentId() id: string): Promise<SweetAttachment> {
     const attachment = await this.SweetAttachmentsService.find(id);
