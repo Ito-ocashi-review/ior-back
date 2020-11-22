@@ -41,7 +41,7 @@ export class SweetAttachmentsService {
    * @returns {Promise<TResult|TResult2|SweetAttachment>}
    */
   async save(attachment: SweetAttachment): Promise<SweetAttachment> {
-    $log.debug({message: "Validate review", attachment});
+    $log.debug({message: "Validate attachmebnt", attachment});
 
     const model = new this.SweetAttachment(attachment);
     $log.debug({message: "Save attachment", attachment});
