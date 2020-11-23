@@ -1,6 +1,6 @@
 import {BodyParams, Controller, Get, PathParams, Post, Put, Delete} from "@tsed/common";
 import {NotFound} from "@tsed/exceptions";
-import {Description, Required, Returns, Status, Summary} from "@tsed/schema";
+import {Description, MinLength, Required, Returns, Status, Summary} from "@tsed/schema";
 import {ReviewId} from "../decorators/ReviewId";
 import {Review} from "../models/Review";
 import {ReviewsService} from "../services/ReviewsService";
@@ -32,7 +32,8 @@ export class ReviewsCtrl {
   async save(
     @Description("Post a review") 
     @Required() 
-    @BodyParams() 
+    @BodyParams()
+    @MinLength(1)
     review: Review) {
     return this.ReviewsService.save(review);
   }
@@ -43,7 +44,8 @@ export class ReviewsCtrl {
   async update(
     @Description("Put a review") 
     @PathParams("id") 
-    @ReviewId() 
+    @ReviewId()
+    @MinLength(1)
     id: string
     ): Promise<Review> {
     const review = await this.ReviewsService.find(id);
