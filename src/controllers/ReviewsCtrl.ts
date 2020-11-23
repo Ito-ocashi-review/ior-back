@@ -14,25 +14,26 @@ export class ReviewsCtrl {
   @Get("/:id")
   @Summary("Return a review by ID")
   @(Status(200, Review).Description("Success"))
-  async get(@PathParams("id") @ReviewId() id: string): Promise<Review> {
+  async get(
+    @PathParams("id")
+    @ReviewId() 
+    id: string): Promise<Review> {
     const review = await this.ReviewsService.find(id);
 
     if (review) {
       return review;
     }
-
     throw new NotFound("Review not found");
   }
 
   @Post("/")
   @Summary("Create a new Review")
   @(Returns(201, Review).Description("Created"))
-  save(
-    @Description("Review model")
-    @BodyParams()
-    @Required()
-    review: Review
-  ) {
+  async save(
+    @Description("Post a review") 
+    @Required() 
+    @BodyParams() 
+    review: Review) {
     return this.ReviewsService.save(review);
   }
 
@@ -40,27 +41,27 @@ export class ReviewsCtrl {
   @Summary("Update review information")
   @(Status(200).Description("Success"))
   async update(
-    @PathParams("id")
-    id: string,
-    @BodyParams() review: Review
-  ): Promise<Review> {
-    return this.ReviewsService
-      .find(id)
-      .then(() => this.ReviewsService.save(review))
-      .catch((err) => {
-        throw new NotFound("Review id not found");
-      });
+    @Description("Put a review") 
+    @PathParams("id") 
+    @ReviewId() 
+    id: string
+    ): Promise<Review> {
+    const review = await this.ReviewsService.find(id);
+
+    if(review) {
+      return this.ReviewsService.save(review)
+    }
+    throw new NotFound("Review id not found")
   }
 
   @Delete("/:id")
   @Summary("Remove an review")
   @(Status(204).Description("No content"))
   async remove(
-    @Required()
-    @Description("The review id")
-    @PathParams("id")
-    id: string
-  ): Promise<void> {
+    @Description("The review id") 
+    @Required() 
+    @PathParams("id") 
+    id: string): Promise<void> {
     return this.ReviewsService.remove(id);
   }
 }
