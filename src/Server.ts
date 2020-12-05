@@ -10,14 +10,13 @@ import * as compress from "compression";
 import * as cookieParser from "cookie-parser";
 import * as methodOverride from "method-override";
 import mongooseConfig from "./config/index";
-import * as session from "express-session";
 import * as cors from "cors";
+import HeaderTokenParser from './middlewares/HeaderTokenParser';
 
 import {IndexCtrl} from "./controllers/IndexCtrl";
 import {SweetsCtrl} from "./controllers/SweetsCtrl";
 import {UsersCtrl} from "./controllers/UsersCtrl";
 import {ReviewsCtrl} from "./controllers/ReviewsCtrl";
-import {PassportCtrl} from "./controllers/PassportCtrl";
 import { SweetAttachmentsCtrl } from './controllers/SweetAttachmentsCtrl';
 
 import {User} from "./models/User";
@@ -36,7 +35,6 @@ export const rootDir = __dirname;
       UsersCtrl,
       ReviewsCtrl,
       SweetAttachmentsCtrl,
-      PassportCtrl
     ],
     "/": [IndexCtrl]
   },
@@ -76,16 +74,6 @@ export class Server {
         bodyParser.urlencoded({
           extended: true
         }))     
-      .use(session({
-        secret: "mysecretkey",
-        resave: true,
-        saveUninitialized: true,
-        cookie: {
-          path: "/",
-          httpOnly: true,
-          secure: false,
-          maxAge: 36000,
-        }
-      }));
+      .use(HeaderTokenParser)
   }
 }
