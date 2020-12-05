@@ -1,4 +1,4 @@
-import {BodyParams, Controller, Delete, Get, Put, PathParams, Post} from "@tsed/common";
+import {BodyParams, Controller, Req, Delete, Get, Put, PathParams, Post} from "@tsed/common";
 import {NotFound} from "@tsed/exceptions";
 import {Description, Required, Returns, Status, Summary} from "@tsed/schema";
 import {SweetId} from "../decorators/SweetId";
@@ -27,7 +27,7 @@ export class SweetsCtrl {
   @Get("/")
   @Summary("Return all sweets")
   @(Status(200, Sweet).Description("Success"))
-  async findAll(): Promise<Array<Sweet> | null> {
+  async findAll(@Req() request: Req): Promise<Array<Sweet> | null> {
     return await this.sweetsService.findAll();
   }
 

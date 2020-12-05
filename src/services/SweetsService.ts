@@ -1,6 +1,7 @@
 import {Inject, Service} from "@tsed/common";
 import {$log} from "@tsed/logger";
 import {MongooseModel} from "@tsed/mongoose";
+import { request } from 'express';
 import {Sweet} from "../models/Sweet";
 
 @Service()
@@ -29,7 +30,6 @@ export class SweetsService {
   async find(id: string): Promise<Sweet | null> {
     $log.debug("Search a calendar from ID", id);
     const sweet = await this.Sweet.findById(id).exec();
-
     $log.debug("Found", sweet);
 
     return sweet;
