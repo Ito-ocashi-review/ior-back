@@ -13,10 +13,12 @@ export class SessionsService {
    * @param email
    * @returns {undefined|User}
    */
-  async findUserByAccessToken(accessToken:string): Promise<null | Session> {
+  static async findUserByAccessToken(accessToken:string): Promise<null | Session> {
     $log.debug("Search a session by accessToken");
 
-    return this.Session.findOne({accessToken}).exec();
+    const session = this.Session.findOne({accessToken}).exec();
+
+    return session
   }
 
 

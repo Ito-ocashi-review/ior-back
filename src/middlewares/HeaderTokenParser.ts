@@ -1,15 +1,27 @@
-import {Constant, IMiddleware, Middleware, Req} from "@tsed/common";
-import {NotAcceptable} from "@tsed/exceptions";
+import {IMiddleware, Middleware, Req,Next} from "@tsed/common";
+import * as Express from "express";
+import {SessionsService} from "../services/SessionsService";
 
 @Middleware()
 export default class HeaderTokenParser implements IMiddleware {
-  @Constant("acceptMimes")
-  acceptMimes: string[];
 
-  use(@Req() request: Req) {
-    console.log('huga');
-    if (!request.accepts(this.acceptMimes)) {
-      throw new NotAcceptable("Accepted mimes are: " + this.acceptMimes.join(", "));
+  async use(
+      @Req() request: Req,
+      @Next() next: Express.NextFunction
+  ) {
+    const accessToken = request.headers.authorization || null;
+    
+    if (accessToken == null) {
+      return next();
+    }
+  
+    try {
+      const session = await SessionsService.findUserByAccessToken(accessToken);
+      request.user = session?.userId;
+    }
+    catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
     }
   }
 }

@@ -1,4 +1,4 @@
-import {Description, Required,Ref} from "@tsed/schema";
+import {Description,Ref } from "@tsed/schema";
 import {Model} from "@tsed/mongoose";
 import { User } from './User';
 
