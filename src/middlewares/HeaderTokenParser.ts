@@ -19,6 +19,7 @@ constructor(private sessionsService: SessionsService) {}
     try {
       const session = await this.sessionsService.findUserByAccessToken(accessToken);
       request.user = session?.userId;
+      return next()
     }
     catch (error) {
       // eslint-disable-next-line no-console
