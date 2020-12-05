@@ -1,5 +1,5 @@
-import {Description,Ref } from "@tsed/schema";
-import {Model} from "@tsed/mongoose";
+import {Description } from "@tsed/schema";
+import {Model,Ref} from "@tsed/mongoose";
 import { User } from './User';
 
 @Model()

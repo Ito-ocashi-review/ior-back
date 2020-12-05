@@ -13,7 +13,7 @@ export class SessionsService {
    * @param email
    * @returns {undefined|User}
    */
-  static async findUserByAccessToken(accessToken:string): Promise<null | Session> {
+  async findUserByAccessToken(accessToken:string): Promise<null | Session> {
     $log.debug("Search a session by accessToken");
 
     const session = this.Session.findOne({accessToken}).exec();
