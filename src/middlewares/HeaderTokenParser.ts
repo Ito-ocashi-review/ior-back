@@ -4,6 +4,7 @@ import {SessionsService} from "../services/SessionsService";
 
 @Middleware()
 export default class HeaderTokenParser implements IMiddleware {
+constructor(private sessionsService: SessionsService) {}
 
   async use(
       @Req() request: Req,
@@ -16,7 +17,7 @@ export default class HeaderTokenParser implements IMiddleware {
     }
   
     try {
-      const session = await SessionsService.findUserByAccessToken(accessToken);
+      const session = await this.sessionsService.findUserByAccessToken(accessToken);
       request.user = session?.userId;
     }
     catch (error) {
