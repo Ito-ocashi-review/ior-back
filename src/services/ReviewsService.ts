@@ -52,4 +52,16 @@ export class ReviewsService {
     return model;
   }
 
+    /**
+   *
+   * @param id
+   * @returns {Promise<Review>}
+   */
+  async remove(id: string) {
+    await this.Review.deleteOne({
+      _id: id
+    }).exec();
+  }
+
+
 }
