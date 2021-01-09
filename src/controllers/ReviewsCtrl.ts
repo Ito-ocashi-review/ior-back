@@ -1,4 +1,4 @@
-import {BodyParams, Controller, Get, PathParams, Post, Put, Delete} from "@tsed/common";
+import {BodyParams, Controller, Get, PathParams, Post, Put, Delete, HeaderParams} from "@tsed/common";
 import {NotFound} from "@tsed/exceptions";
 import {Description, MinLength, Required, Returns, Status, Summary} from "@tsed/schema";
 import {ReviewId} from "../decorators/ReviewId";
@@ -31,10 +31,12 @@ export class ReviewsCtrl {
   @(Returns(201, Review).Description("Created"))
   async save(
     @Description("Post a review") 
-    @Required() 
+    @Required()
+    @HeaderParams("Authorization") Authorization: string,
     @BodyParams()
     @MinLength(1)
     review: Review) {
+    console.log('acccessTokenだよ！',Authorization);
     return this.ReviewsService.save(review);
   }
 
