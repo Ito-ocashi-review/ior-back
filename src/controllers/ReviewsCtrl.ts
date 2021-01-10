@@ -4,12 +4,13 @@ import {Description, MinLength, Required, Returns, Status, Summary} from "@tsed/
 import {ReviewId} from "../decorators/ReviewId";
 import {Review} from "../models/Review";
 import {ReviewsService} from "../services/ReviewsService";
+import {SessionsService} from "../services/SessionsService";
 
 @Controller({
   path: "/reviews",
 })
 export class ReviewsCtrl {
-  constructor(private ReviewsService: ReviewsService) {}
+  constructor(private ReviewsService: ReviewsService, private SessionsService: SessionsService) {}
 
   @Get("/:id")
   @Summary("Return a review by ID")
@@ -36,7 +37,8 @@ export class ReviewsCtrl {
     @BodyParams()
     @MinLength(1)
     review: Review) {
-    console.log('acccessTokenだよ！',Authorization);
+    const session = await this.SessionsService.findUserByAccessToken(Authorization)
+    Object.assign(review,{userId:session?.userId})
     return this.ReviewsService.save(review);
   }
 
