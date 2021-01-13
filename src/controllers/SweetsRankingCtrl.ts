@@ -1,12 +1,12 @@
 import {Controller, Get} from "@tsed/common";
 import { SweetsService } from "../services/SweetsService";
+import { ReviewsService} from "../services/ReviewsService";
 
 @Controller("/ranking")
 export class SweetsRankingCtrl {
-  constructor(private SweetsService: SweetsService) {}
+  constructor(private SweetsService: SweetsService,private ReviewsService: ReviewsService) {}
   @Get("/")
   async findAll() {
-    const sweets = await this.SweetsService.findAll();
-    return sweets;
+    return await this.ReviewsService.getRanking();
   }
 }

@@ -38,6 +38,7 @@ export class ReviewsCtrl {
     @MinLength(1)
     review: Review) {
     const session = await this.SessionsService.findUserByAccessToken(Authorization)
+    console.log('reviewです！',review)
     Object.assign(review,{userId:session?.userId})
     return this.ReviewsService.save(review);
   }

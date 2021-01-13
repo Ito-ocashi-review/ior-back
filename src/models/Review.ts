@@ -16,13 +16,13 @@ export class Review{
 
     @Ref(Sweet)
     @Description("Sweet ID")
-    sweetId: Ref<User>
+    sweetId: Ref<Sweet>
 
     @Ref(Reply)
     @Description("User ID")
     replyId: Ref<Reply>
 
-
+    
     @Description("Star")
     @Required()
     star: Number;
