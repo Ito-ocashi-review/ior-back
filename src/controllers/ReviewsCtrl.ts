@@ -1,15 +1,16 @@
-import {BodyParams, Controller, Get, PathParams, Post, Put, Delete} from "@tsed/common";
+import {BodyParams, Controller, Get, PathParams, Post, Put, Delete, HeaderParams} from "@tsed/common";
 import {NotFound} from "@tsed/exceptions";
 import {Description, MinLength, Required, Returns, Status, Summary} from "@tsed/schema";
 import {ReviewId} from "../decorators/ReviewId";
 import {Review} from "../models/Review";
 import {ReviewsService} from "../services/ReviewsService";
+import {SessionsService} from "../services/SessionsService";
 
 @Controller({
   path: "/reviews",
 })
 export class ReviewsCtrl {
-  constructor(private ReviewsService: ReviewsService) {}
+  constructor(private ReviewsService: ReviewsService, private SessionsService: SessionsService) {}
 
   @Get("/:id")
   @Summary("Return a review by ID")
@@ -31,10 +32,14 @@ export class ReviewsCtrl {
   @(Returns(201, Review).Description("Created"))
   async save(
     @Description("Post a review") 
-    @Required() 
+    @Required()
+    @HeaderParams("Authorization") Authorization: string,
     @BodyParams()
     @MinLength(1)
     review: Review) {
+    const session = await this.SessionsService.findUserByAccessToken(Authorization)
+    console.log('reviewです！',review)
+    Object.assign(review,{userId:session?.userId})
     return this.ReviewsService.save(review);
   }
 

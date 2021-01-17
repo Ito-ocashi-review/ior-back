@@ -18,6 +18,7 @@ import {SweetsCtrl} from "./controllers/SweetsCtrl";
 import {UsersCtrl} from "./controllers/UsersCtrl";
 import {ReviewsCtrl} from "./controllers/ReviewsCtrl";
 import { SweetAttachmentsCtrl } from './controllers/SweetAttachmentsCtrl';
+import {SweetsRankingCtrl} from './controllers/SweetsRankingCtrl';
 
 import {User} from "./models/User";
 
@@ -35,6 +36,7 @@ export const rootDir = __dirname;
       UsersCtrl,
       ReviewsCtrl,
       SweetAttachmentsCtrl,
+      SweetsRankingCtrl,
     ],
     "/": [IndexCtrl]
   },

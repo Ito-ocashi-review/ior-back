@@ -6,14 +6,9 @@ export class User{
 
   @Description("Username (identifer)")
   @Required()
-  username: string;
+  name: string;
 
-  @Description("DisplayName")
-  @Required()
-  displayName: string;
-
-  @Description("FilePath")
-  @Required()
-  filePath: string;
+  @Description("UserImage")
+  image: string
 
 }

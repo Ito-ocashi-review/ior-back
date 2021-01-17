@@ -26,9 +26,9 @@ export class UsersService {
    * @param email
    * @returns {undefined|User}
    */
-  async findOrCreate(profile:{username:string,displayName:string,photos:[{value:string}]}): Promise<User> {
-    $log.debug("Search a user from username", profile.username);
-    const user = await this.User.findOne({username:profile.username}).exec();
+  async findOrCreate(profile:{name:string,image:string}): Promise<User> {
+    $log.debug("Search a user from username", profile.name);
+    const user = await this.User.findOne({username:profile.name}).exec();
 
     // Return if existing user
     if(user != null){
@@ -38,9 +38,8 @@ export class UsersService {
 
     // create new user
     return this.save({
-      username:profile.username,
-      displayName:profile.displayName,
-      filePath:profile.photos[0].value,
+      name:profile.name,
+      image:profile.image,
     })    
   }
 

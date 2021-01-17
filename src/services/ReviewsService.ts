@@ -2,11 +2,15 @@ import {Inject, Service} from "@tsed/common";
 import {$log} from "@tsed/logger";
 import {MongooseModel} from "@tsed/mongoose";
 import {Review} from "../models/Review";
+import {Sweet} from "../models/Sweet";
 
 @Service()
 export class ReviewsService {
   @Inject(Review)
   private Review: MongooseModel<Review>;
+
+  @Inject(Sweet)
+  private Sweet: MongooseModel<Sweet>;
 
   $onInit() {
     this.reload();
@@ -63,5 +67,12 @@ export class ReviewsService {
     }).exec();
   }
 
+  async getRanking(){
+    const reviews = await this.Review.find({}).populate('sweetId').populate('userId');
+    console.log(reviews)
+    console.log("お菓子です",await this.Sweet.findById("5ce7ad3028890bd71749d477").exec())
+
+    return await this.Review.find({}).populate('sweetId').populate('userId')
+  }
 
 }
