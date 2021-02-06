@@ -15,7 +15,7 @@ export class SweetsRankingCtrl {
       const reviews = await this.ReviewsService.findBySweetId(sweet._id)
       // レビューが一つもなかったら、平均値を0で返す
       if(reviews?.length===0){
-        return {name:sweet.name, averageScore: 0};
+        return {name:sweet.name, evaluation: 0};
       }
 
       const scoreAmount = reviews?.map((review)=>{
@@ -25,9 +25,9 @@ export class SweetsRankingCtrl {
       })
 
       if(scoreAmount && reviews?.length){
-        return {sweetId:sweet.name, averageScore: (scoreAmount/reviews?.length).toFixed(2)}
+        return {name:sweet.name, evaluation: (scoreAmount/reviews?.length).toFixed(2)}
       }else{
-        return {sweetId:sweet.name, averageScore: 0};
+        return {name:sweet.name, evaluation: 0};
       }
     })
 
