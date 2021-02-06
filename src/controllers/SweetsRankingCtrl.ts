@@ -10,20 +10,32 @@ export class SweetsRankingCtrl {
   @Get("/")
   async getRanking() {
     const sweets : Sweet[] | null = await this.SweetsService.findAll();
-    if(sweets){
-      console.log('一つ目のお菓子',sweets[0])
-      const reviews = await this.ReviewsService.findBySweetId(sweets[0]._id)
-      console.log(reviews)
+
+    const sweetScore = sweets?.map(async(sweet) => {
+      const reviews = await this.ReviewsService.findBySweetId(sweet._id)
+      // レビューが一つもなかったら、平均値を0で返す
+      if(reviews?.length===0){
+        return {name:sweet.name, averageScore: 0};
+      }
+
+      const scoreAmount = reviews?.map((review)=>{
+        return Number(review.star)
+      }).reduce(function(accumulator,currentValue){
+        return accumulator + currentValue
+      })
+
+      if(scoreAmount && reviews?.length){
+        return {sweetId:sweet.name, averageScore: (scoreAmount/reviews?.length).toFixed(2)}
+      }else{
+        return {sweetId:sweet.name, averageScore: 0};
+      }
+    })
+
+    let sweetsRankingData
+    if(sweetScore){
+      sweetsRankingData = await Promise.all(sweetScore);
     }
-    // 後でランキングの計算方法を考えて実装
-    const sweetsRanking = [
-      {name: "kitkat",evaluation:4.7},
-      {name: "ぼたぼた焼き",evaluation:4.5},
-      {name: "じゃがりこ",evaluation:4.1},
-      {name: "うまい棒",evaluation:3.7},
-      {name: "ハイチュー",evaluation:2.7},
-      {name: "キャベツ太郎",evaluation:1.2},
-    ]
-    return sweetsRanking;
+
+    return sweetsRankingData;
   }
 }
