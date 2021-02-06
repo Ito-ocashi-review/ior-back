@@ -20,7 +20,7 @@ export class SweetsRankingCtrl {
 
       const scoreAmount = reviews?.map((review)=>{
         return Number(review.star)
-      }).reduce(function(accumulator,currentValue){
+      }).reduce((accumulator,currentValue)=>{
         return accumulator + currentValue
       })
 
