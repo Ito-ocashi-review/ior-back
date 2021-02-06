@@ -39,6 +39,11 @@ export class ReviewsService {
     return review;
   }
 
+  /**
+   * Find reviews by sweetId
+   * @param id 
+   * @returns {Promise<Review[]>}
+   */
   async findBySweetId(id: string): Promise<Review[] | null> {
 
     const reviews = await this.Review.find({sweetId:id}).exec();
