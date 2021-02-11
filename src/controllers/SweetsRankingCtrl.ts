@@ -36,6 +36,11 @@ export class SweetsRankingCtrl {
       sweetsRankingData = await Promise.all(sweetScore);
     }
 
-    return sweetsRankingData;
+    // 評価の値で昇順にソート
+    const sortedSweetsRankingData = sweetsRankingData?.sort((a,b) => {
+      return Number(b.evaluation) - Number(a.evaluation);
+    })
+
+    return sortedSweetsRankingData;
   }
 }
