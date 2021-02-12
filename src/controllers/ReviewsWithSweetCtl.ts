@@ -7,7 +7,7 @@ import {ReviewsService} from "../services/ReviewsService";
 import {SessionsService} from "../services/SessionsService";
 
 @Controller({
-  path: "/swet/reviews",
+  path: "/sweet/reviews",
 })
 
 export class ReviewsWithSweetCtrl {
